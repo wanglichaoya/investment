@@ -1,0 +1,20 @@
+*.class
+*.log
+*.lock
+*.jpg
+
+
+# Package Files #
+*.jar
+*.war
+target/
+test/
+
+# idea
+.idea/
+*.iml
+
+
+### IntelliJ IDEA ###
+*.iml
+*.idea
