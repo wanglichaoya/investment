@@ -1,0 +1,32 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: index-getway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+        - id: index-auth   #唯一
+          uri: lb://index-codes-server  #动态路由，指数服务 lb表示loadBalance
+          predicates: #断言
+            - Path=/codes/**   #路径匹配
+        - id: indexData-auth
+          uri: lb://trend-trading-backtest-server #动态路由，指数的数据服务
+          predicates:
+            - Path=/simulate/**
+        - id: view-auth
+          uri: lb://trend-trading-backtest-view  #动态路由，视图服务
+          predicates:
+            - Path=/**
+    nacos:
+      discovery:
+        server-addr: localhost:8848   #配置Nacos地址
+    sentinel:
+      transport:
+        #配置Sentinel dashboard地址
+        dashboard: localhost:8080
+        #默认8719端口，假如被占用会自动从8719开始依次+1扫描,直至找到未被占用的端口
+        port: 8719
