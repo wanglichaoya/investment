@@ -1,0 +1,15 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: index-gather-store-server #数据采集和存储服务
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #配置Nacos地址
+  redis:
+    port: 6379
+    host: localhost
+
+
