@@ -10,5 +10,7 @@ public class CommitTest {
     private static void  method1(int i){
         i+=1;
         System.out.println(1);
+
+
     }
 }
